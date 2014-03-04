@@ -1,4 +1,12 @@
 language: java
 jdk:
-  - oraclejdk7
+- oraclejdk7
 script: ./gradlew build
+env:
+  global:
+    secure: HQnuVIhFhNsz/HRO9SCWW8r5Q2WKL62Kc/I6ZnEjSewce/ecOLMDdDWw7X0BR/dUW/qZN7GC3j3oBLocBsHkcLj34o3KQLdawxphsNdkeGRrI7jUy3tVyHVSVNtWgZvFhMPZwKfLdzd4u/7UHBPWNwlbkhTeool6fhDdmFPjuPk=
+
+after_script:
+  - git config credential.helper "store --file=.git/credentials"
+  - echo "https://${GH_TOKEN}:@github.com" > .git/credentials
+  - node ./node_modules/grunt-cli/bin/grunt release
