@@ -4,10 +4,9 @@ jdk:
 script: ./gradlew build
 env:
   global:
-    secure: mQF+umKxYlyCy8N5Vnlg3E1mIcsWcL2Hxu/cPe1alWM0DJ8PmbGLfVwvTaOtvAg80wivAN0hsCU2D108ocnkViWYJPezQFqW60TpeOfrjZgkRd1L3IZIQj9/QiBcLVp0QCuVYTWRHXfT3kvIZ4d9agsZN70ZOwKnl7JgqN20j8I=
+    secure: XVamUKNtwKp/1J9DkvPsSDMZlxm0+VCtaPD01E1VVR06c5SdagOWlAoW2U5GTJkNSNyVbAdQhzzdbjvuk54MaT2nh828B/hYx0nzvSVIn9yy6EcdKNFHiyBl6kRamPTXllR9K1J9zTyFdC9IunaY3ixoUoV7rU2KcZJitsU0cwg=
 
 after_script:
   - git config credential.helper "store --file=.git/credentials"
   - echo "https://${GH_TOKEN}:@github.com" > .git/credentials
-  - echo "https://${GH_TOKEN}:@github.com"
   - node ./node_modules/grunt-cli/bin/grunt release
