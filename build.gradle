@@ -1,0 +1,47 @@
+apply plugin: 'eclipse'
+apply plugin: 'java'
+apply plugin: 'maven'
+buildscript {
+}
+
+// define the properties file
+ext.configFile = file "build.properties"
+
+configFile.withReader {
+	// read config.  it shall from now on be referenced as simply config or as project.config
+	def prop = new Properties()
+	prop.load(it)
+	project.ext.config = new ConfigSlurper().parse prop
+}
+
+repositories { mavenCentral() }
+dependencies { 
+	compile "org.projectlombok:lombok:1.12.4"
+	compile "com.google.guava:guava:${config.guavaVersion}" }
+
+// Get Jenkins Build Number
+ext.buildNumber = "dev"
+if(System.getenv().BUILD_NUMBER)
+	buildNumber = System.getenv().BUILD_NUMBER
+println "Build Number: $buildNumber"
+
+version = config.major+'.'+config.minor+'.'+buildNumber
+group = 'com.texasjake95'
+archivesBaseName = "Texasjake95Commons"
+
+task sourcesJar(type: Jar, dependsOn: classes) {
+	classifier = 'sources'
+	from sourceSets.main.java
+}
+
+artifacts { archives sourcesJar }
+
+uploadArchives {
+	repositories.mavenDeployer { repository(url: "file:///Users/Texasjake95/Github/maven-repo/") }
+}
+
+
+
+
+
+
