@@ -23,6 +23,8 @@ dependencies {
 ext.buildNumber = "dev"
 if(System.getenv().BUILD_NUMBER)
 	buildNumber = System.getenv().BUILD_NUMBER
+if(System.getenv().TRAVIS_ BUILD_NUMBER)
+	buildNumber = System.getenv().TRAVIS_BUILD_NUMBER
 println "Build Number: $buildNumber"
 
 version = config.major+'.'+config.minor+'.'+buildNumber
