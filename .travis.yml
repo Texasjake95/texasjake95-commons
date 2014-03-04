@@ -4,7 +4,7 @@ jdk:
 script: ./gradlew build
 env:
   global:
-    secure: HQnuVIhFhNsz/HRO9SCWW8r5Q2WKL62Kc/I6ZnEjSewce/ecOLMDdDWw7X0BR/dUW/qZN7GC3j3oBLocBsHkcLj34o3KQLdawxphsNdkeGRrI7jUy3tVyHVSVNtWgZvFhMPZwKfLdzd4u/7UHBPWNwlbkhTeool6fhDdmFPjuPk=
+    secure: mQF+umKxYlyCy8N5Vnlg3E1mIcsWcL2Hxu/cPe1alWM0DJ8PmbGLfVwvTaOtvAg80wivAN0hsCU2D108ocnkViWYJPezQFqW60TpeOfrjZgkRd1L3IZIQj9/QiBcLVp0QCuVYTWRHXfT3kvIZ4d9agsZN70ZOwKnl7JgqN20j8I=
 
 after_script:
   - git config credential.helper "store --file=.git/credentials"

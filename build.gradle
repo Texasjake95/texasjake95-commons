@@ -19,7 +19,7 @@ dependencies {
 	compile "org.projectlombok:lombok:1.12.4"
 	compile "com.google.guava:guava:${config.guavaVersion}" }
 
-// Get Jenkins Build Number
+// Get Jenkins/Travis Build Number
 ext.buildNumber = "dev"
 if(System.getenv().BUILD_NUMBER)
 	buildNumber = System.getenv().BUILD_NUMBER
@@ -39,7 +39,7 @@ task sourcesJar(type: Jar, dependsOn: classes) {
 artifacts { archives sourcesJar }
 
 uploadArchives {
-	repositories.mavenDeployer { repository(url: "file:///Users/Texasjake95/Github/maven-repo/") }
+	//repositories.mavenDeployer { repository(url: "file:///Users/Texasjake95/Github/maven-repo/") }
 }
 
 
