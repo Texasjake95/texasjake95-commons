@@ -13,7 +13,7 @@ configFile.withReader {
 	prop.load(it)
 	project.ext.config = new ConfigSlurper().parse prop
 }
-//
+
 repositories { mavenCentral() }
 dependencies { 
 	compile "org.projectlombok:lombok:1.12.4"
