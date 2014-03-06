@@ -1,7 +1,11 @@
-apply plugin: 'eclipse'
-apply plugin: 'java'
-apply plugin: 'maven'
+apply plugin: 'texasjake95_commons'
+//apply plugin: 'java'
+//apply plugin: 'eclipse'
+//apply plugin: 'maven'
+
 buildscript {
+	repositories { maven { url = 'https://github.com/Texasjake95/maven-repo/raw/master/' } }
+	dependencies { classpath 'com.texasjake95:GradlePlugin:1.0-SNAPSHOT' }
 }
 
 // define the properties file
@@ -15,20 +19,20 @@ configFile.withReader {
 }
 
 repositories { mavenCentral() }
-dependencies { 
-	compile "org.projectlombok:lombok:1.12.4"
-	compile "com.google.guava:guava:${config.guavaVersion}" }
+dependencies { compile "com.google.guava:guava:${config.guavaVersion}" }
 
 // Get Jenkins/Travis Build Number
 ext.buildNumber = "dev"
+
 if(System.getenv().BUILD_NUMBER)
 	buildNumber = System.getenv().BUILD_NUMBER
+
 if(System.getenv().TRAVIS_BUILD_NUMBER)
 	buildNumber = System.getenv().TRAVIS_BUILD_NUMBER
+
 println "Build Number: $buildNumber"
 
 version = config.major+'.'+config.minor+'.'+buildNumber
-group = 'com.texasjake95'
 archivesBaseName = "Texasjake95Commons"
 
 task sourcesJar(type: Jar, dependsOn: classes) {
@@ -40,12 +44,4 @@ artifacts { archives sourcesJar }
 
 uploadArchives {
 	repositories.mavenDeployer { repository(url: "file:maven-repo/") }
-	
-	//repositories.mavenDeployer { repository(url: "file:///Users/Texasjake95/Github/maven-repo/") }
 }
-
-
-
-
-
-
