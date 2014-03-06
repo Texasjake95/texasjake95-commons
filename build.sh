@@ -30,7 +30,7 @@ git commit -q -m "Travis-CI Build Push"
 #git pull https://github.com/Texasjake95/maven-repo.git master
 
 # push commit
-git push -q origin HEAD:master
+git push
 
 # delete repo since we are done with it
 rm -rf maven-repo
