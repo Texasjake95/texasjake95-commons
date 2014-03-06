@@ -9,7 +9,7 @@ git clone https://Texasjake95@github.com/Texasjake95/maven-repo.git ./maven-test
 # run gradle
 ./gradlew build uploadArchives
 
-# change to the maven reop directory
+# change to the maven repo directory
 cd ./maven-repo
 
 # add correct origin to the repo 
@@ -28,7 +28,7 @@ git add .
 git commit -q -m "Travis-CI Build Push"
 
 # push commit
-git push -q origin HEAD:master
+git push -q origin master
 
 # delete repo since we are done with it
 rm -rf maven-repo
