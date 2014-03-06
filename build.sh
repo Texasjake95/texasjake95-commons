@@ -4,7 +4,7 @@
 rm -rf maven-repo
 
 # pull the maven repo from git
-git clone https://Texasjake95@github.com/Texasjake95/maven-repo.git ./maven-test -v
+git clone https://Texasjake95@github.com/Texasjake95/maven-repo.git ./maven-test -b master -v
 
 # run gradle
 ./gradlew build uploadArchives
@@ -27,7 +27,7 @@ git config push.default current
 git add .
 git commit -q -m "Travis-CI Build Push"
 
-git pull
+git pull https://github.com/Texasjake95/maven-repo.git master
 
 # push commit
 git push -q origin HEAD:master
