@@ -6,7 +6,8 @@ git clone https://Texasjake95@github.com/Texasjake95/maven-repo.git ./maven-test
 cd ./maven-test
 git config credential.helper "store --file=.git/credentials"
 echo "https://${GH_TOKEN}:@github.com" > .git/credentials
-git config --global user.name "Texasjake95"
+git config user.email "texasjake95@gmail.com"
+git config user.name "Texasjake95"
 git add .
 git commit -m "Travis-CI Build Push"
 git push 
