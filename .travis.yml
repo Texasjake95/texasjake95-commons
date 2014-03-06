@@ -4,4 +4,4 @@ jdk:
 script: bash test2.sh
 env:
   global:
-    secure: XVamUKNtwKp/1J9DkvPsSDMZlxm0+VCtaPD01E1VVR06c5SdagOWlAoW2U5GTJkNSNyVbAdQhzzdbjvuk54MaT2nh828B/hYx0nzvSVIn9yy6EcdKNFHiyBl6kRamPTXllR9K1J9zTyFdC9IunaY3ixoUoV7rU2KcZJitsU0cwg=
+  - secure: kOUm17yuE1ioBiLI8aFlMATI2RSKXoqKI7nY1+57XKvqb0lg9zYrRVFAIAOoT4lC3YHgrkrnjB4Nfpdh6FgKtGQj1NLed6JHatd4tdJMfjfS51LUoSvM+o6FLISWKAlWishpRWrIsBa2pZjsKxrwwp9Hn/4xlqJsJ88aai/zJtI=
