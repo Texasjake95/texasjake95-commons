@@ -1,7 +1,7 @@
 language: java
 jdk:
-  - oraclejdk7
+- oraclejdk7
 script: bash build.sh
 env:
   global:
-  - secure: kOUm17yuE1ioBiLI8aFlMATI2RSKXoqKI7nY1+57XKvqb0lg9zYrRVFAIAOoT4lC3YHgrkrnjB4Nfpdh6FgKtGQj1NLed6JHatd4tdJMfjfS51LUoSvM+o6FLISWKAlWishpRWrIsBa2pZjsKxrwwp9Hn/4xlqJsJ88aai/zJtI=
+    secure: bWxNgj5f/2vCTHUNsdan5wHB0sqJnWZahMyHJM/fBWY3OW3r4qWVYeGuwS1O89/xR5agXcqHuefSG2l5AtBbvjObK+GJzZQpNClmNjnHLgWQ9WjwitlLq35phlN4K8y19EnS0TgY6aALvN7howxbydqU/FGeXkZjOzy9r9PvaVE=
