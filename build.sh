@@ -27,7 +27,7 @@ git config push.default current
 git add .
 git commit -q -m "Travis-CI Build Push"
 
-git pull https://github.com/Texasjake95/maven-repo.git master
+#git pull https://github.com/Texasjake95/maven-repo.git master
 
 # push commit
 git push -q origin HEAD:master
