@@ -28,7 +28,7 @@ git add .
 git commit -q -m "Travis-CI Build Push"
 
 # push commit
-git push -q origin master
+git push -q origin
 
 # delete repo since we are done with it
 rm -rf maven-repo
