@@ -39,6 +39,8 @@ task sourcesJar(type: Jar, dependsOn: classes) {
 artifacts { archives sourcesJar }
 
 uploadArchives {
+	repositories.mavenDeployer { repository(url: "file:maven-test/") }
+	
 	//repositories.mavenDeployer { repository(url: "file:///Users/Texasjake95/Github/maven-repo/") }
 }
 
