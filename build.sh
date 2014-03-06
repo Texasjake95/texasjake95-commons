@@ -27,8 +27,10 @@ git config push.default current
 git add .
 git commit -q -m "Travis-CI Build Push"
 
+git pull
+
 # push commit
-git push -q origin
+git push -q origin HEAD:master
 
 # delete repo since we are done with it
 rm -rf maven-repo
