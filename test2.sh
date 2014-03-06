@@ -9,6 +9,6 @@ git remote add origin https://Texasjake95:${GH_TOKEN}@github.com/Texasjake95/mav
 git config user.email "texasjake95@gmail.com"
 git config user.name "Texasjake95"
 git add .
-git commit --quiet -m "Travis-CI Build Push"
+git commit -q --quiet -m "Travis-CI Build Push"
 git push 
 rm -rf maven-test
