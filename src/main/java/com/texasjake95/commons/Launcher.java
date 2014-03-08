@@ -25,7 +25,7 @@ public class Launcher {
 		try
 		{
 			loader.registerTransformer("com.texasjake95.commons.event.EventTransformer");
-			final Class<?> clazz = Class.forName("", false, loader);
+			final Class<?> clazz = Class.forName(args[0], false, loader);
 			final Method mainMethod = clazz.getMethod("main", new Class[] { String[].class });
 			mainMethod.invoke(null, (Object) args);
 		}
