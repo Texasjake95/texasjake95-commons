@@ -25,6 +25,12 @@ public class Launcher {
 		try
 		{
 			loader.registerTransformer("com.texasjake95.commons.event.EventTransformer");
+			if (args.length > 1)
+			{
+				String[] exlude = args[1].split(";");
+				for (String e : exlude)
+					loader.addClassLoaderExclusion(e);
+			}
 			final Class<?> clazz = Class.forName(args[0], false, loader);
 			final Method mainMethod = clazz.getMethod("main", new Class[] { String[].class });
 			mainMethod.invoke(null, (Object) args);
