@@ -19,7 +19,10 @@ configFile.withReader {
 }
 
 repositories { mavenCentral() }
-dependencies { compile "com.google.guava:guava:${config.guavaVersion}" }
+dependencies {
+	compile "com.google.guava:guava:${config.guavaVersion}"
+	compile 'org.ow2.asm:asm-debug-all:4.2'
+}
 
 // Get Jenkins/Travis Build Number
 ext.buildNumber = "dev"
