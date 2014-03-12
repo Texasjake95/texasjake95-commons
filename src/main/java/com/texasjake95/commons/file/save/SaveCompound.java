@@ -161,7 +161,7 @@ public class SaveCompound extends SaveBase {
 	public <T extends SaveBase> SaveList<T> getList(String name, int id)
 	{
 		if (!this.hasData(name) || !(this.dataMap.get(name) instanceof SaveList) || ((SaveList<T>) this.dataMap.get(name)).getSaveBaseAt(0).id != id)
-			this.setShort(name, (short) 0);
+			this.setList(name, new SaveList<T>(name));
 		return (SaveList<T>) this.dataMap.get(name);
 	}
 	

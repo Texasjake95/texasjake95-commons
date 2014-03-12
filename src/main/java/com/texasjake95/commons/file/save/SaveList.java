@@ -4,6 +4,7 @@ import java.io.DataInput;
 import java.io.DataOutput;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Iterator;
 
 import com.google.common.collect.Lists;
 
@@ -41,9 +42,19 @@ public class SaveList<E extends SaveBase> extends SaveBase {
 			id = newID;
 		}
 	}
-
+	
 	public E getSaveBaseAt(int i)
 	{
 		return this.list.get(i);
+	}
+	
+	public void removeSave(E base)
+	{
+		this.list.remove(base);
+	}
+	
+	public Iterator<E> iterator()
+	{
+		return this.list.iterator();
 	}
 }
