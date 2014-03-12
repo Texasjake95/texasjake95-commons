@@ -157,12 +157,11 @@ public class SaveCompound extends SaveBase {
 	}
 	
 	// list
-	@SuppressWarnings("unchecked")
-	public <T extends SaveBase> SaveList<T> getList(String name, int id)
+	public SaveList getList(String name, int id)
 	{
-		if (!this.hasData(name) || !(this.dataMap.get(name) instanceof SaveList) || ((SaveList<T>) this.dataMap.get(name)).getSaveBaseAt(0).id != id)
-			this.setList(name, new SaveList<T>(name));
-		return (SaveList<T>) this.dataMap.get(name);
+		if (!this.hasData(name) || !(this.dataMap.get(name) instanceof SaveList) || (((SaveList) this.dataMap.get(name)).length() > 0 && ((SaveList) this.dataMap.get(name)).getSaveBaseAt(0).id != id))
+			this.setList(name, new SaveList(name));
+		return (SaveList) this.dataMap.get(name);
 	}
 	
 	public void setList(String name, SaveList value)

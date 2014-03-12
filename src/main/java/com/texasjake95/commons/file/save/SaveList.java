@@ -8,9 +8,9 @@ import java.util.Iterator;
 
 import com.google.common.collect.Lists;
 
-public class SaveList<E extends SaveBase> extends SaveBase {
+public class SaveList extends SaveBase {
 	
-	private ArrayList<E> list = Lists.newArrayList();
+	private ArrayList<SaveBase> list = Lists.newArrayList();
 	
 	public SaveList(String name)
 	{
@@ -20,10 +20,10 @@ public class SaveList<E extends SaveBase> extends SaveBase {
 	@Override
 	protected void saveToOutputStream(DataOutput out) throws IOException
 	{
-		Iterator<E> iterator = this.iterator();
+		Iterator<SaveBase> iterator = this.iterator();
 		while (iterator.hasNext())
 		{
-			E base = (E) iterator.next();
+			SaveBase base = iterator.next();
 			base.save(out);
 		}
 		out.writeByte(0);
@@ -42,7 +42,7 @@ public class SaveList<E extends SaveBase> extends SaveBase {
 				break;
 			base.loadFromInputStream(in);
 			// System.out.println("Loading:" + base + " for " + this.name);
-			list.add((E) base);
+			list.add(base);
 			byte newID = in.readByte();
 			if (newID != id)
 				throw new IllegalArgumentException("Base types are not the same");
@@ -50,22 +50,28 @@ public class SaveList<E extends SaveBase> extends SaveBase {
 		}
 	}
 	
-	public E getSaveBaseAt(int i)
+	public <T extends SaveBase> T getSaveBaseAt(int i)
 	{
-		return this.list.get(i);
+		return (T) this.list.get(i);
 	}
 	
-	public void addSave(E base)
+	public void addSave(SaveBase base)
 	{
 		this.list.add(base);
 	}
-	public void removeSave(E base)
+	
+	public void removeSave(SaveBase base)
 	{
 		this.list.remove(base);
 	}
 	
-	public Iterator<E> iterator()
+	public Iterator<SaveBase> iterator()
 	{
 		return this.list.iterator();
+	}
+	
+	public int length()
+	{
+		return this.list.size();
 	}
 }

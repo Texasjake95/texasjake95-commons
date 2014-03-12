@@ -81,7 +81,7 @@ public abstract class SaveBase {
 			case 9:
 				return new SaveFloat(name);
 			case 10:
-				return new SaveList<SaveBase>(name);
+				return new SaveList(name);
 			default:
 				return new SaveEnd();
 		}
