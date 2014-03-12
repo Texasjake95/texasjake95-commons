@@ -20,6 +20,13 @@ public class SaveList<E extends SaveBase> extends SaveBase {
 	@Override
 	protected void saveToOutputStream(DataOutput out) throws IOException
 	{
+		Iterator<E> iterator = this.iterator();
+		while (iterator.hasNext())
+		{
+			E base = (E) iterator.next();
+			base.save(out);
+		}
+		out.writeByte(0);
 	}
 	
 	@SuppressWarnings("unchecked")
@@ -38,7 +45,7 @@ public class SaveList<E extends SaveBase> extends SaveBase {
 			list.add((E) base);
 			byte newID = in.readByte();
 			if (newID != id)
-				throw new IllegalArgumentException("Base types are not right");
+				throw new IllegalArgumentException("Base types are not the same");
 			id = newID;
 		}
 	}
