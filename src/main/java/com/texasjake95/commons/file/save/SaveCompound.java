@@ -117,7 +117,7 @@ public class SaveCompound extends SaveBase {
 	}
 	
 	// long
-	public double getLong(String name)
+	public long getLong(String name)
 	{
 		if (!this.hasData(name) || !(this.dataMap.get(name) instanceof SaveLong))
 			this.setLong(name, 0L);
@@ -130,7 +130,7 @@ public class SaveCompound extends SaveBase {
 	}
 	
 	// short
-	public double getShort(String name)
+	public short getShort(String name)
 	{
 		if (!this.hasData(name) || !(this.dataMap.get(name) instanceof SaveShort))
 			this.setShort(name, (short) 0);
@@ -154,6 +154,20 @@ public class SaveCompound extends SaveBase {
 	{
 		value.name = name;
 		this.addData(value);
+	}
+	
+	// list
+	@SuppressWarnings("unchecked")
+	public <T extends SaveBase> SaveList<T> getList(String name, int id)
+	{
+		if (!this.hasData(name) || !(this.dataMap.get(name) instanceof SaveList) || ((SaveList<T>) this.dataMap.get(name)).getSaveBaseAt(0).id != id)
+			this.setShort(name, (short) 0);
+		return (SaveList<T>) this.dataMap.get(name);
+	}
+	
+	public void setList(String name, SaveList value)
+	{
+		this.addData(value.setName(name));
 	}
 	
 	@Override

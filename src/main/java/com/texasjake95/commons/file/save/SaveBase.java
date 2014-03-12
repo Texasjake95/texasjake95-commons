@@ -80,6 +80,8 @@ public abstract class SaveBase {
 				return new SaveCompound(name);
 			case 9:
 				return new SaveFloat(name);
+			case 10:
+				return new SaveList<SaveBase>(name);
 			default:
 				return new SaveEnd();
 		}
