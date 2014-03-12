@@ -44,12 +44,14 @@ public class SaveList extends SaveBase {
 			// System.out.println("Loading:" + base + " for " + this.name);
 			list.add(base);
 			byte newID = in.readByte();
-			if (newID != id)
+			
+			if (newID > 0 && newID != id)
 				throw new IllegalArgumentException("Base types are not the same");
 			id = newID;
 		}
 	}
 	
+	@SuppressWarnings("unchecked")
 	public <T extends SaveBase> T getSaveBaseAt(int i)
 	{
 		return (T) this.list.get(i);
