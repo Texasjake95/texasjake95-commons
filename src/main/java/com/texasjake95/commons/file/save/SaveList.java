@@ -55,6 +55,10 @@ public class SaveList<E extends SaveBase> extends SaveBase {
 		return this.list.get(i);
 	}
 	
+	public void addSave(E base)
+	{
+		this.list.add(base);
+	}
 	public void removeSave(E base)
 	{
 		this.list.remove(base);
