@@ -29,7 +29,6 @@ public class SaveList extends SaveBase {
 		out.writeByte(0);
 	}
 	
-	@SuppressWarnings("unchecked")
 	@Override
 	protected void loadFromInputStream(DataInput in) throws IOException
 	{
