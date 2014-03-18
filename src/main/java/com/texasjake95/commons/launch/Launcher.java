@@ -1,4 +1,4 @@
-package com.texasjake95.commons;
+package com.texasjake95.commons.launch;
 
 import java.lang.reflect.Method;
 import java.net.URLClassLoader;

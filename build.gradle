@@ -1,4 +1,4 @@
-apply plugin: 'texasjake95_commons'
+apply plugin: 'texasjake95'
 //apply plugin: 'java'
 //apply plugin: 'eclipse'
 //apply plugin: 'maven'

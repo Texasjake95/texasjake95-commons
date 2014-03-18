@@ -24,6 +24,9 @@ public class FileHelper {
 	
 	public static final String PARENTFILE = "../";
 	public static final String CURRENTFILE = ".";
+	private static final String mavenLayout = "%s/%s/%s/%s/%s-%s";
+	private static final String[] extentions = { "jar", "zip" };
+	private static final ArrayList<String> MavenRepos = Lists.newArrayList();
 	
 	public static String createFileName(String... strings)
 	{
@@ -61,6 +64,11 @@ public class FileHelper {
 	{
 		try
 		{
+			File temp = new File(fileName);
+			if (temp.getParentFile() != null && !temp.getParentFile().exists())
+			{
+				temp.getParentFile().mkdirs();
+			}
 			ReadableByteChannel rbc = Channels.newChannel(new URL(URL).openStream());
 			FileOutputStream fos = new FileOutputStream(fileName);
 			fos.getChannel().transferFrom(rbc, 0, Long.MAX_VALUE);
@@ -236,7 +244,6 @@ public class FileHelper {
 			if (arg0.toFile().getAbsolutePath().equals(fileBase))
 				return FileVisitResult.CONTINUE;
 			fileNames.add(arg0.toFile().getAbsolutePath());
-
 			return FileVisitResult.SKIP_SUBTREE;
 		}
 	}
@@ -260,5 +267,42 @@ public class FileHelper {
 			fileNames.add(name.substring(name.indexOf(fileName) + fileName.length() + 1));
 		}
 		return fileNames;
+	}
+	
+	public static void addMavenRepo(String mavenRepo)
+	{
+		MavenRepos.add(mavenRepo);
+	}
+	
+	public static void MavenDownload(String group, String artifact, String version, String destinationDir)
+	{
+		File destDir = new File(destinationDir);
+		if (!destDir.exists())
+		{
+			destDir.mkdirs();
+			try
+			{
+				destDir.createNewFile();
+			}
+			catch (IOException e)
+			{
+				e.printStackTrace();
+			}
+		}
+		String trueGroup = group.replaceAll("\\.", "/");
+		for (String maven : MavenRepos)
+		{
+			String loc = String.format(mavenLayout, maven, trueGroup, artifact, version, artifact, version);
+			String pom = loc + ".pom";
+			System.out.println(pom);
+			String dest = String.format(mavenLayout, destinationDir, trueGroup, artifact, version, artifact, version) + ".pom";
+			System.out.println(dest);
+			downloadURLToFile(dest, pom);
+		}
+	}
+
+	public static File getMavenFile(String trueGroup, String artifact, String version, String destinationDir)
+	{
+		return new File(String.format(mavenLayout, destinationDir, trueGroup, artifact, version, artifact, version) + ".pom");
 	}
 }
