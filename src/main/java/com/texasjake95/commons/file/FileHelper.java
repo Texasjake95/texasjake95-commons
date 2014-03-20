@@ -60,7 +60,7 @@ public class FileHelper {
 		return file;
 	}
 	
-	public static String downloadURLToFile(String fileName, String URL)
+	public static boolean downloadURLToFile(String fileName, String URL)
 	{
 		try
 		{
@@ -76,8 +76,9 @@ public class FileHelper {
 		}
 		catch (Exception e)
 		{
+			return false;
 		}
-		return fileName;
+		return true;
 	}
 	
 	public static String copyFileTo(String fileName, String target)
@@ -293,16 +294,13 @@ public class FileHelper {
 		for (String maven : MavenRepos)
 		{
 			String loc = String.format(mavenLayout, maven, trueGroup, artifact, version, artifact, version);
-			String pom = loc + ".pom";
-			System.out.println(pom);
-			String dest = String.format(mavenLayout, destinationDir, trueGroup, artifact, version, artifact, version) + ".pom";
-			System.out.println(dest);
-			downloadURLToFile(dest, pom);
+			for (String extention : extentions)
+			{
+				String url = loc + extention;
+				String dest = String.format(mavenLayout, destinationDir, trueGroup, artifact, version, artifact, version) + extention;
+				System.out.println(dest);
+				downloadURLToFile(dest, url);
+			}
 		}
-	}
-
-	public static File getMavenFile(String trueGroup, String artifact, String version, String destinationDir)
-	{
-		return new File(String.format(mavenLayout, destinationDir, trueGroup, artifact, version, artifact, version) + ".pom");
 	}
 }

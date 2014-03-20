@@ -1,13 +1,13 @@
-import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 
-import com.texasjake95.commons.file.FileHelper;
+import com.texasjake95.commons.util.system.OS;
 
 public class CommonsTest {
 	
-	public static void main(String args[])
+	public static void main(String args[]) throws FileNotFoundException, IOException
 	{
-//		FileHelper.addMavenRepo("https://github.com/Texasjake95/maven-repo/raw/master/");
-//		FileHelper.MavenDownload("com.texasjake95", "Texasjake95Commons", "1.0.53", "maven-test");
-//		File pom = FileHelper.getMavenFile("com.texasjake95", "Texasjake95Commons", "1.0.53", "maven-test");
+		System.out.println(OS.getOS().name);
+		System.out.println(System.getProperty("os.arch").toLowerCase());
 	}
 }
