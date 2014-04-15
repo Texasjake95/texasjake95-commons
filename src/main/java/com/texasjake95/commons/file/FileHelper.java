@@ -265,7 +265,7 @@ public class FileHelper {
 			}
 		for (String name : names.fileNames)
 		{
-			fileNames.add(name.substring(name.indexOf(fileName) + fileName.length() + 1));
+			fileNames.add(name.substring(name.indexOf(fileName) + fileName.length()));
 		}
 		return fileNames;
 	}
