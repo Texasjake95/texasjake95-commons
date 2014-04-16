@@ -88,8 +88,8 @@ public class Vector3D extends Vector2D {
 	@Override
 	public float getMagnitude()
 	{
-		float XYsq = super.getMagnitude() * super.getMagnitude();
+		float XYsq = super.getMagnitude();
 		float Zsq = z * z;
-		return (float) Math.sqrt(XYsq + Zsq);
+		return (float) Math.sqrt(XYsq * XYsq + Zsq);
 	}
 }
