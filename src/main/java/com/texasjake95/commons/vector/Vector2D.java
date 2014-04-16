@@ -2,7 +2,7 @@ package com.texasjake95.commons.vector;
 
 import java.io.Serializable;
 
-public class Vector2D implements Serializable{
+public class Vector2D implements Serializable {
 	
 	private static final long serialVersionUID = 6479562263023348410L;
 	protected float x;
@@ -76,6 +76,23 @@ public class Vector2D implements Serializable{
 	public String toString()
 	{
 		return x + ":i" + " " + y + ":j";
+	}
+	
+	public float getAngleR()
+	{
+		float angle = (float) Math.atan(this.y / this.x);
+		if (y < 0)
+		{
+			angle += Math.PI;
+		}
+		return angle;
+	}
+	
+	public float getAngleD()
+	{
+		float radians = this.getAngleR();
+		float degrees = (float) (radians * 180 / Math.PI);
+		return degrees;
 	}
 	
 	public float getMagnitude()
