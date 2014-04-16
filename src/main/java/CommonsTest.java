@@ -1,13 +1,6 @@
-import java.io.FileNotFoundException;
-import java.io.IOException;
-
-import com.texasjake95.commons.util.system.OS;
-
 public class CommonsTest {
 	
-	public static void main(String args[]) throws FileNotFoundException, IOException
+	public static void main(String args[])
 	{
-		System.out.println(OS.getOS().name);
-		System.out.println(System.getProperty("os.arch").toLowerCase());
 	}
 }
