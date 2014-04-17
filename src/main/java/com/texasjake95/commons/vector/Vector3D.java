@@ -92,4 +92,12 @@ public class Vector3D extends Vector2D {
 		float Zsq = z * z;
 		return (float) Math.sqrt(XYsq * XYsq + Zsq);
 	}
+	
+	public Vector3D cross(Vector3D vec)
+	{
+		float x = this.y * vec.z - this.z * vec.y;
+		float y = this.x * this.z - this.z * vec.x;
+		float z = this.x * this.y - this.y * this.x;
+		return new Vector3D(x, y, z);
+	}
 }

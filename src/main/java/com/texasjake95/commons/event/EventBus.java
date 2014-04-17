@@ -19,17 +19,20 @@ import com.texasjake95.commons.asm.ASMEventHandler;
  *      https://github.com/MinecraftForge/MinecraftForge</a>
  * 
  */
-public class EventBus<E extends Annotation> {
+public class EventBus<E extends Annotation, T extends Event> {
 	
 	private static int maxID = 0;
 	private ConcurrentHashMap<Object, ArrayList<IEventListener>> listeners = new ConcurrentHashMap<Object, ArrayList<IEventListener>>();
 	private final int busID = maxID++;
 	final Class<E> type;
-	
-	public EventBus(Class<E> clazz)
+	final Class<T> eventClazz;
+
+	public EventBus(Class<E> clazz, Class<T> eventClazz)
 	{
 		ListenerList.resize(busID + 1);
 		type = clazz;
+		this.eventClazz = eventClazz;
+		
 	}
 	
 	public void register(Object target)
@@ -54,7 +57,7 @@ public class EventBus<E extends Annotation> {
 							throw new IllegalArgumentException("Method " + method + " has @SubscribeEvent annotation, but requires " + parameterTypes.length + " arguments.  Event handler methods must require a single argument.");
 						}
 						Class<?> eventType = parameterTypes[0];
-						if (!Event.class.isAssignableFrom(eventType))
+						if (!eventClazz.isAssignableFrom(eventType))
 						{
 							throw new IllegalArgumentException("Method " + method + " has @SubscribeEvent annotation, but takes a argument that is not an Event " + eventType);
 						}
