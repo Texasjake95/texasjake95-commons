@@ -72,6 +72,11 @@ public class Vector2D implements Serializable {
 		return VecX + VecY;
 	}
 	
+	public Vector2D multiply(float scalar)
+	{
+		return new Vector2D(this.x * scalar, this.y * scalar);
+	}
+	
 	@Override
 	public String toString()
 	{

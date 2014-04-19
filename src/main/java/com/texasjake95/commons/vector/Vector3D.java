@@ -40,7 +40,7 @@ public class Vector3D extends Vector2D {
 	
 	public Vector3D addition(Vector3D... vecs)
 	{
-		Vector3D current = new Vector3D();
+		Vector3D current = this;
 		for (Vector3D vec : vecs)
 			current = current.addition(vec);
 		return current;
@@ -55,7 +55,7 @@ public class Vector3D extends Vector2D {
 	
 	public Vector3D subtaction(Vector3D... vecs)
 	{
-		Vector3D current = new Vector3D();
+		Vector3D current = this;
 		for (Vector3D vec : vecs)
 			current = current.subtaction(vec);
 		return current;
@@ -80,6 +80,12 @@ public class Vector3D extends Vector2D {
 	}
 	
 	@Override
+	public Vector3D multiply(float scalar)
+	{
+		return new Vector3D(super.multiply(scalar), this.z * scalar);
+	}
+	
+	@Override
 	public String toString()
 	{
 		return super.toString() + " " + z + ":k";
@@ -96,8 +102,8 @@ public class Vector3D extends Vector2D {
 	public Vector3D cross(Vector3D vec)
 	{
 		float x = this.y * vec.z - this.z * vec.y;
-		float y = this.x * this.z - this.z * vec.x;
-		float z = this.x * this.y - this.y * this.x;
+		float y = this.z * vec.x - this.x * vec.z;
+		float z = this.x * vec.y - this.y * vec.x;
 		return new Vector3D(x, y, z);
 	}
 }
