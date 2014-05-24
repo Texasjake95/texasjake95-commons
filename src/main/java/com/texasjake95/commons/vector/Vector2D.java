@@ -2,22 +2,24 @@ package com.texasjake95.commons.vector;
 
 import java.io.Serializable;
 
+import com.texasjake95.commons.helpers.MathHelper;
+
 public class Vector2D implements Serializable {
 	
 	private static final long serialVersionUID = 6479562263023348410L;
-	protected float x;
-	protected float y;
+	protected double x;
+	protected double y;
 	
 	public Vector2D()
 	{
 	}
 	
-	public Vector2D(float x)
+	public Vector2D(double x)
 	{
 		this.x = x;
 	}
 	
-	public Vector2D(float x, float y)
+	public Vector2D(double x, double y)
 	{
 		this(x);
 		this.y = y;
@@ -25,8 +27,8 @@ public class Vector2D implements Serializable {
 	
 	public Vector2D addition(Vector2D vec)
 	{
-		float VecX = this.x + vec.x;
-		float VecY = this.y + vec.y;
+		double VecX = this.x + vec.x;
+		double VecY = this.y + vec.y;
 		return new Vector2D(VecX, VecY);
 	}
 	
@@ -40,8 +42,8 @@ public class Vector2D implements Serializable {
 	
 	public Vector2D subtaction(Vector2D vec)
 	{
-		float VecX = this.x - vec.x;
-		float VecY = this.y - vec.y;
+		double VecX = this.x - vec.x;
+		double VecY = this.y - vec.y;
 		return new Vector2D(VecX, VecY);
 	}
 	
@@ -53,17 +55,17 @@ public class Vector2D implements Serializable {
 		return current;
 	}
 	
-	public float dotProduct(Vector2D vec)
+	public double dotProduct(Vector2D vec)
 	{
-		float VecX = vec.x * this.x;
-		float VecY = vec.y * this.y;
+		double VecX = vec.x * this.x;
+		double VecY = vec.y * this.y;
 		return VecX + VecY;
 	}
 	
-	public float dotProduct(Vector2D... vecs)
+	public double dotProduct(Vector2D... vecs)
 	{
-		float VecX = this.x;
-		float VecY = this.y;
+		double VecX = this.x;
+		double VecY = this.y;
 		for (Vector2D vec : vecs)
 		{
 			VecX *= vec.x;
@@ -72,7 +74,7 @@ public class Vector2D implements Serializable {
 		return VecX + VecY;
 	}
 	
-	public Vector2D multiply(float scalar)
+	public Vector2D multiply(double scalar)
 	{
 		return new Vector2D(this.x * scalar, this.y * scalar);
 	}
@@ -80,12 +82,12 @@ public class Vector2D implements Serializable {
 	@Override
 	public String toString()
 	{
-		return x + ":i" + " " + y + ":j";
+		return this.constructString() + " Magnitude: " + this.getMagnitude();
 	}
 	
-	public float getAngleR()
+	public double getAngleR()
 	{
-		float angle = (float) Math.atan(this.y / this.x);
+		double angle = (double) Math.atan(this.y / this.x);
 		if (y < 0)
 		{
 			angle += Math.PI;
@@ -93,17 +95,38 @@ public class Vector2D implements Serializable {
 		return angle;
 	}
 	
-	public float getAngleD()
+	public double getAngleD()
 	{
-		float radians = this.getAngleR();
-		float degrees = (float) (radians * 180 / Math.PI);
+		double radians = this.getAngleR();
+		double degrees = (double) (radians * 180 / Math.PI);
 		return degrees;
 	}
 	
-	public float getMagnitude()
+	public double getAngleMadeWithVector(Vector2D vec)
 	{
-		float Xsq = x * x;
-		float Ysq = y * y;
-		return (float) Math.sqrt(Xsq + Ysq);
+		double vecMag = vec.getMagnitude();
+		double dot = this.dotProduct(vec);
+		double thisMag = this.getMagnitude();
+		double ratio = dot / (thisMag * vecMag);
+		if (ratio > 1)
+			ratio = 1;
+		if (ratio < -1)
+			ratio = -1;
+		ratio = MathHelper.round(ratio, 4);
+		double angle = (double) Math.acos(ratio);
+		angle = MathHelper.round(angle, 4);
+		return angle;
+	}
+	
+	public double getMagnitude()
+	{
+		double Xsq = x * x;
+		double Ysq = y * y;
+		return (double) Math.sqrt(Xsq + Ysq);
+	}
+	
+	protected String constructString()
+	{
+		return x + ":i" + " " + y + ":j";
 	}
 }
