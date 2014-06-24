@@ -42,8 +42,6 @@ public class FileHelper {
 	
 	public static File getFile(String parentName, String fileName)
 	{
-		if (parentName == null)
-			parentName = "";
 		TXFile file = new TXFile(parentName, fileName);
 		try
 		{

@@ -26,7 +26,7 @@ public class ConfigFile {
 	
 	public ConfigFile(File file)
 	{
-		this.file = FileHelper.getFile("", file.getAbsolutePath());
+		this.file = FileHelper.getFile(null, file.getAbsolutePath());
 	}
 	
 	public void addCatagoryComment(ConfigCatagory cat, String comment)
