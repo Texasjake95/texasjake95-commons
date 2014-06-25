@@ -30,10 +30,12 @@ public class Checker {
 	{
 		for(Object object : objects)
 		{
+			if(isNull(target) && isNull(object))
+				return true;
 			if(object == target)
 				return true;
 		}
-		return true;
+		return false;
 	}
 	
 	public static boolean isNotNull(Object object)

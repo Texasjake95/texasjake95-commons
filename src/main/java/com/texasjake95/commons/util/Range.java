@@ -65,7 +65,8 @@ public class Range implements Iterable<Integer> {
 	 *            the number to stop before if not inclusive
 	 * @param inclusive
 	 *            include the end number if applicable
-	 * @return
+	 * @return a list of all the integers from start to end - 1 skipping every
+	 *         step of number
 	 */
 	public static Range range(int start, int end, boolean inclusive)
 	{
@@ -100,15 +101,15 @@ public class Range implements Iterable<Integer> {
 	 *            number
 	 * @param inclusive
 	 *            include the end number if applicable
-	 * @return
+	 * @return a list of all the integers from start to end - 1 skipping every
+	 *         step of number
 	 */
 	public static Range range(int start, int end, int step, boolean inclusive)
 	{
 		return new Range(start, end, step, inclusive);
 	}
 	
-	
-	//Class start
+	// Class start
 	private ArrayList<Integer> range = Lists.newArrayList();;
 	
 	private Range(int end)

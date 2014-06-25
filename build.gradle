@@ -43,7 +43,18 @@ task sourcesJar(type: Jar, dependsOn: classes) {
 	from sourceSets.main.java
 }
 
-artifacts { archives sourcesJar }
+task javadocJar(type: Jar, dependsOn: "javadoc") {
+	classifier "javadoc"
+	from "${buildDir}/docs/javadoc"
+}
+
+artifacts { 
+	archives sourcesJar 
+	archives javadocJar
+}
+
+build.dependsOn sourcesJar, javadocJar
+
 
 uploadArchives {
 	repositories.mavenDeployer { repository(url: "file:maven-repo/") }
