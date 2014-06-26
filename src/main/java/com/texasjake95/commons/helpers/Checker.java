@@ -28,11 +28,11 @@ public class Checker {
 	
 	public static boolean doAnyMatch(Object target, Object... objects)
 	{
-		for(Object object : objects)
+		for (Object object : objects)
 		{
-			if(isNull(target) && isNull(object))
+			if (isNull(target) && isNull(object))
 				return true;
-			if(object == target)
+			if (object == target)
 				return true;
 		}
 		return false;
