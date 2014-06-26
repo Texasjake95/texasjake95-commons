@@ -1,23 +1,7 @@
 language: java
 jdk:
-	- oraclejdk7
-before_install: 
-	-rm -rf maven-repo
-	-git clone https://github.com/BuildCraft/BuildCraft-Localization.git ../BuildCraft-Localization
-script: ./gradlew build
-after_success: 
-	-./gradlew uploadArchives
-	-cd ./maven-repo
-	-git remote rm origin
-	-git remote add origin https://Texasjake95:${GH_TOKEN}@github.com/Texasjake95/maven-repo.git
-	-git config user.email "texasjake95@gmail.com"
-	-git config user.name "Texasjake95"
-	-git config push.default current
-	-git add .
-	-git commit -q -m "Travis-CI Build Push"
-	-git push -q
-after_script: rm -rf maven-repo	
-
+- oraclejdk7
+script: bash build.sh
 env:
   global:
     secure: Pyw6tOE5OdiNhdyzEz6Yv4q8pH3nDNsfhG3sFUV3di7N4UKEOqv3p0p2BVMMtbUBMH6J64FHo0chT619vBYhIk+fBJY7TTA504AGhX6cCf0cBBQPtHg6ufukKc7057hIAn3fkw7HD7RAUwpc75G18P9fjrAWnIMLLVAeyK5HxB8=
