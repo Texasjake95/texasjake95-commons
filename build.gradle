@@ -43,7 +43,6 @@ version = config.major+'.'+config.minor+'.'+buildNumber
 archivesBaseName = "Texasjake95Commons"
 
 uploadArchives {
-	dependsOn 'reobf'
 	dependsOn 'build'
 	repositories {
 		
@@ -59,18 +58,18 @@ uploadArchives {
 					project {
 						name project.archivesBaseName
 						packaging 'jar'
-						description 'Plugin for Texasjake95\'s gradle scripts'
-						url 'https://github.com/Texasjake95/GradlePlugin'
+						description 'Library for Texasjake95\'s projects'
+						url 'https://github.com/Texasjake95/texasjake95-commons'
 						
 						scm {
-							url 'https://github.com/Texasjake95/GradlePlugin'
-							connection 'scm:git:git://github.com/Texasjake95/GradlePlugin.git'
-							developerConnection 'scm:git:git@github.com:Texasjake95/GradlePlugin.git'
+							url 'https://github.com/Texasjake95/texasjake95-commons'
+							connection 'scm:git:git://github.com/Texasjake95/texasjake95-commons.git'
+							developerConnection 'scm:git:git@github.com:Texasjake95/texasjake95-commons.git'
 						}
 						
 						issueManagement {
 							system 'github'
-							url 'https://github.com/Texasjake95/GradlePlugin/issues'
+							url 'https://github.com/Texasjake95/texasjake95-commons/issues'
 						}
 						
 						developers {
