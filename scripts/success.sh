@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 # run gradle
-./gradlew uploadArchives
+./gradlew uploadArchives -Pfilesmaven="file:maven-repo/"
 
 # change to the maven repo directory
 cd ./maven-repo
