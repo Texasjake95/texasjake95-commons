@@ -38,24 +38,53 @@ println "Build Number: $buildNumber"
 version = config.major+'.'+config.minor+'.'+buildNumber
 archivesBaseName = "Texasjake95Commons"
 
-task sourcesJar(type: Jar, dependsOn: classes) {
-	classifier = 'sources'
-	from sourceSets.main.java
-}
-
-task javadocJar(type: Jar, dependsOn: "javadoc") {
-	classifier "javadoc"
-	from "${buildDir}/docs/javadoc"
-}
-
-artifacts { 
-	archives sourcesJar 
-	archives javadocJar
-}
-
-build.dependsOn sourcesJar, javadocJar
-
-
 uploadArchives {
-	repositories.mavenDeployer { repository(url: "file:maven-repo/") }
+	dependsOn 'reobf'
+	dependsOn 'build'
+	repositories {
+		
+		if(project.hasProperty("filesmaven"))
+		{
+			mavenDeployer {
+				logger.info("Pushing to Maven Remote")
+				repository(url: project.filesmaven)
+				pom {
+					groupId = project.group
+					version = project.version
+					artifactId = project.archivesBaseName
+					project {
+						name project.archivesBaseName
+						packaging 'jar'
+						description 'Plugin for Texasjake95\'s gradle scripts'
+						url 'https://github.com/Texasjake95/GradlePlugin'
+						
+						scm {
+							url 'https://github.com/Texasjake95/GradlePlugin'
+							connection 'scm:git:git://github.com/Texasjake95/GradlePlugin.git'
+							developerConnection 'scm:git:git@github.com:Texasjake95/GradlePlugin.git'
+						}
+						
+						issueManagement {
+							system 'github'
+							url 'https://github.com/Texasjake95/GradlePlugin/issues'
+						}
+						
+						developers {
+							developer {
+								id 'Texasjake95'
+								name 'Texasjake95'
+								roles { role 'developer' }
+							}
+						}
+					}
+				}
+			}
+		}
+		else{
+			logger.info("Pushing to Maven Local")
+			mavenDeployer {
+				repository(url: project.repositories.mavenLocal().url)
+			}
+		}
+	}
 }

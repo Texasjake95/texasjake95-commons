@@ -84,6 +84,7 @@ public class FileHelper {
 		try
 		{
 			ReadableByteChannel rbc = Channels.newChannel(new FileInputStream(fileName));
+			FileHelper.getFile(null, target).createNewFile();
 			FileOutputStream fos = new FileOutputStream(target);
 			fos.getChannel().transferFrom(rbc, 0, Long.MAX_VALUE);
 			fos.close();
