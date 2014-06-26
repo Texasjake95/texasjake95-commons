@@ -1,9 +1,9 @@
 language: java
 jdk:
 - oraclejdk7
-before_install: Scripts/preInstall.sh
+before_install: bash scripts/preInstall.sh
 script: ./gradlew build
-after_success: Scripts/success.sh
+after_success: bash scripts/success.sh
 after_script: rm -rf maven-repo
 env:
   global:
