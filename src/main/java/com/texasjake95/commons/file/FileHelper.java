@@ -110,7 +110,6 @@ public class FileHelper {
 		ArrayList<String> fileNames = Lists.newArrayList();
 		try
 		{
-			System.out.println(zipFile);
 			ZipFile zip = new ZipFile(new File(zipFile));
 			String newPath = extractTo;
 			new TXFile(newPath).mkdirs();
@@ -297,7 +296,6 @@ public class FileHelper {
 			{
 				String url = loc + extention;
 				String dest = String.format(mavenLayout, destinationDir, trueGroup, artifact, version, artifact, version) + extention;
-				System.out.println(dest);
 				downloadURLToFile(dest, url);
 			}
 		}
