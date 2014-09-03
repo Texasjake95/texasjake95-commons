@@ -4,7 +4,11 @@ apply plugin: 'texasjake95'
 //apply plugin: 'maven'
 
 buildscript {
-	repositories { maven { url = 'https://github.com/Texasjake95/maven-repo/raw/master/' } }
+	repositories {
+		mavenCentral()
+		mavenLocal() 
+		maven { url = 'https://github.com/Texasjake95/maven-repo/raw/master/' }
+	}
 	dependencies { classpath 'com.texasjake95:GradlePlugin:1.1-SNAPSHOT' }
 }
 
@@ -38,13 +42,52 @@ println "Build Number: $buildNumber"
 version = config.major+'.'+config.minor+'.'+buildNumber
 archivesBaseName = "Texasjake95Commons"
 
-task sourcesJar(type: Jar, dependsOn: classes) {
-	classifier = 'sources'
-	from sourceSets.main.java
-}
-
-artifacts { archives sourcesJar }
-
 uploadArchives {
-	repositories.mavenDeployer { repository(url: "file:maven-repo/") }
+	dependsOn 'build'
+	repositories {
+		
+		if(project.hasProperty("filesmaven"))
+		{
+			mavenDeployer {
+				logger.info("Pushing to Maven Remote")
+				repository(url: project.filesmaven)
+				pom {
+					groupId = project.group
+					version = project.version
+					artifactId = project.archivesBaseName
+					project {
+						name project.archivesBaseName
+						packaging 'jar'
+						description 'Library for Texasjake95\'s projects'
+						url 'https://github.com/Texasjake95/texasjake95-commons'
+						
+						scm {
+							url 'https://github.com/Texasjake95/texasjake95-commons'
+							connection 'scm:git:git://github.com/Texasjake95/texasjake95-commons.git'
+							developerConnection 'scm:git:git@github.com:Texasjake95/texasjake95-commons.git'
+						}
+						
+						issueManagement {
+							system 'github'
+							url 'https://github.com/Texasjake95/texasjake95-commons/issues'
+						}
+						
+						developers {
+							developer {
+								id 'Texasjake95'
+								name 'Texasjake95'
+								roles { role 'developer' }
+							}
+						}
+					}
+				}
+			}
+		}
+		else{
+			logger.info("Pushing to Maven Local")
+			mavenDeployer {
+				repository(url: project.repositories.mavenLocal().url)
+			}
+		}
+	}
 }
