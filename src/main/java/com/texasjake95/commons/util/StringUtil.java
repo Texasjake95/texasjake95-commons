@@ -3,27 +3,29 @@ package com.texasjake95.commons.util;
 import java.util.Random;
 
 public class StringUtil {
-	
+
 	private static final String dCase = "abcdefghijklmnopqrstuvwxyz";
 	private static final String uCase = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 	private static final String intChar = "0123456789";
 	private static Random r = new Random();
-	
-	public static String createABCString(int length)
+
+	public static String create123String(int length)
 	{
-		String tempuCase = uCase;
+		if (length > intChar.length())
+			length = intChar.length();
+		String tempintChar = intChar;
 		StringBuilder string = new StringBuilder();
 		int spot = 0;
 		while (string.length() != length)
 		{
-			spot = r.nextInt(tempuCase.length());
-			string.append(tempuCase.charAt(spot));
-			tempuCase = tempuCase.replaceAll(tempuCase.charAt(spot) + "", "");
+			spot = r.nextInt(tempintChar.length());
+			string.append(tempintChar.charAt(spot));
+			tempintChar = tempintChar.replaceAll(tempintChar.charAt(spot) + "", "");
 			spot = 0;
 		}
 		return string.toString();
 	}
-	
+
 	public static String createabcString(int length)
 	{
 		String tempdCase = dCase;
@@ -38,26 +40,22 @@ public class StringUtil {
 		}
 		return string.toString();
 	}
-	
-	public static String create123String(int length)
+
+	public static String createABCString(int length)
 	{
-		if (length > intChar.length())
-		{
-			length = intChar.length();
-		}
-		String tempintChar = intChar;
+		String tempuCase = uCase;
 		StringBuilder string = new StringBuilder();
 		int spot = 0;
 		while (string.length() != length)
 		{
-			spot = r.nextInt(tempintChar.length());
-			string.append(tempintChar.charAt(spot));
-			tempintChar = tempintChar.replaceAll(tempintChar.charAt(spot) + "", "");
+			spot = r.nextInt(tempuCase.length());
+			string.append(tempuCase.charAt(spot));
+			tempuCase = tempuCase.replaceAll(tempuCase.charAt(spot) + "", "");
 			spot = 0;
 		}
 		return string.toString();
 	}
-	
+
 	public static String createRandomString(int length)
 	{
 		String tempdCase = dCase;

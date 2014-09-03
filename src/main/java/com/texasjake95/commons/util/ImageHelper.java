@@ -9,12 +9,14 @@ import java.net.URL;
 import javax.imageio.ImageIO;
 
 public class ImageHelper {
-	
+
+	private static final String fileSeparator = System.getProperty("file.separator");
+
 	public static BufferedImage loadImage(String loc)
 	{
 		String trueLoc = loc;
-		if (!trueLoc.startsWith("/"))
-			trueLoc = "/" + trueLoc;
+		if (!trueLoc.startsWith(fileSeparator))
+			trueLoc = fileSeparator + trueLoc;
 		try
 		{
 			URL url = ImageHelper.class.getResource(trueLoc);
@@ -26,33 +28,7 @@ public class ImageHelper {
 		}
 		return null;
 	}
-	
-	public static BufferedImage[] splitImage(String loc, int rows, int columns)
-	{
-		return splitImage(loadImage(loc), rows, columns);
-	}
-	
-	public static BufferedImage[] splitImage(BufferedImage image, int rows, int columns)
-	{
-		int chunks = rows * columns;
-		int chunkWidth = image.getWidth() / columns;
-		int chunkHeight = image.getHeight() / rows;
-		int count = 0;
-		BufferedImage imgs[] = new BufferedImage[chunks];
-		for (int x = 0; x < rows; x++)
-		{
-			for (int y = 0; y < columns; y++)
-			{
-				imgs[count] = new BufferedImage(chunkWidth, chunkHeight, BufferedImage.TYPE_4BYTE_ABGR);
-				Graphics2D gr = imgs[count].createGraphics();
-				gr.drawImage(image, 0, 0, chunkWidth, chunkHeight, chunkWidth * y, chunkHeight * x, chunkWidth * y + chunkWidth, chunkHeight * x + chunkHeight, null);
-				gr.dispose();
-				count += 1;
-			}
-		}
-		return imgs;
-	}
-	
+
 	public static void saveImages(BufferedImage[] images, String[] names, String type)
 	{
 		String name = null;
@@ -74,5 +50,29 @@ public class ImageHelper {
 			}
 			nameChange = false;
 		}
+	}
+
+	public static BufferedImage[] splitImage(BufferedImage image, int rows, int columns)
+	{
+		int chunks = rows * columns;
+		int chunkWidth = image.getWidth() / columns;
+		int chunkHeight = image.getHeight() / rows;
+		int count = 0;
+		BufferedImage imgs[] = new BufferedImage[chunks];
+		for (int x = 0; x < rows; x++)
+			for (int y = 0; y < columns; y++)
+			{
+				imgs[count] = new BufferedImage(chunkWidth, chunkHeight, BufferedImage.TYPE_4BYTE_ABGR);
+				Graphics2D gr = imgs[count].createGraphics();
+				gr.drawImage(image, 0, 0, chunkWidth, chunkHeight, chunkWidth * y, chunkHeight * x, chunkWidth * y + chunkWidth, chunkHeight * x + chunkHeight, null);
+				gr.dispose();
+				count += 1;
+			}
+		return imgs;
+	}
+
+	public static BufferedImage[] splitImage(String loc, int rows, int columns)
+	{
+		return splitImage(loadImage(loc), rows, columns);
 	}
 }

@@ -4,38 +4,38 @@ import java.io.DataInput;
 import java.io.DataOutput;
 import java.io.IOException;
 
-public class SaveShort extends SaveBase {
-	
+public class SaveShort extends SaveNumber {
+
 	public short value = 0;
-	
+
 	public SaveShort(String name)
 	{
 		super((byte) 6, name);
 	}
-	
+
+	public short getValue()
+	{
+		return this.value;
+	}
+
+	@Override
+	protected void loadFromInputStream(DataInput in) throws IOException
+	{
+		this.value = new Short(this.getValue(in));
+	}
+
+	@Override
+	protected void saveToOutputStream(DataOutput out) throws IOException
+	{
+		this.saveToOutputStream(out, this.value);
+	}
+
 	public SaveShort setValue(short value)
 	{
 		this.value = value;
 		return this;
 	}
-	
-	public short getValue()
-	{
-		return this.value;
-	}
-	
-	@Override
-	protected void saveToOutputStream(DataOutput out) throws IOException
-	{
-		out.writeShort(value);
-	}
-	
-	@Override
-	protected void loadFromInputStream(DataInput in) throws IOException
-	{
-		this.value = in.readShort();
-	}
-	
+
 	@Override
 	public String toString()
 	{
