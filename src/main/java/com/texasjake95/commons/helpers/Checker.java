@@ -118,15 +118,15 @@ public class Checker {
 		return doAnyMatch(target, Sets.newHashSet(objects));
 	}
 
+	public static boolean doAnyMatch(Object target, Object... objects)
+	{
+		return doAnyMatch(target, Sets.newHashSet(objects));
+	}
+
 	private static boolean doAnyMatch(Object target, Set<Object> set)
 	{
 		HashSet<Object> temp = Sets.newHashSet(set);
 		return temp.contains(target);
-	}
-
-	public static boolean doAnyMatchS(Object target, Object... objects)
-	{
-		return doAnyMatch(target, Sets.newHashSet(objects));
 	}
 
 	public static boolean isNotNull(Object object)
